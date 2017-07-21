@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Registro 1</title>
+      <meta charset="utf-8">
+      <script type="text/javascript" src="scriptV.js"></script>
+      <link rel="stylesheet" href="estilosMX.css"/>
+      
+      <script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+  </head>
+  <body>
+  <div>
+  <h1>Bienvenido a mi primer jueguito en HTML5</h1>
+  <h2>Este es el formulario de registro para niños </h2>
+  <form name="validar" action="usuarioVer.php" method="POST">
+      <input type="hidden" name="nickn"/>
+      <input type="submit" name="entrar" value="verificar"/>
+    </form>
+     <form name="user" action="usuarioReg.php" method="POST" onsubmit="return radioS()">
+     <input type="hidden" name="passnick"/>
+        <div id="registro">
+            <table>
+                <tr>
+                    <td><label>Nick</label></td>
+                    <td><input type="text" name="nombreUsuario" placeholder="Ingrese un nick" onkeypress="return val_letras(event)" maxlength='30' onchange="setName(this)" required/></td>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+                <tr>
+                    <td><select id="opciones" onchange="imgAll()">
+                            <option value="1">Animales</option >
+                            <option value="2">Juguetes de niños</option>
+                            <option value="3">Juguetes de niñas</option>
+                    </select>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>               
+                </table>
+     <h2>Elige una contraseña</h2>
+     <label>
+     <input onchange="pass()" type="radio" name="imagenPass" value="1" id="radio">
+      <img id="img1" width="28" height="51" alt="Error de imagen" src="#" onclick="pass()">
+     </label>
+     <label>
+     <input onchange="pass()" type="radio" name="imagenPass" value="2" >
+      <img id="img2"  width="28" height="51" alt="Error de imagen" src="#" onclick="pass()">
+     </label>
+     <label>
+     <input onchange="pass()" type="radio" name="imagenPass" value="3">
+      <img id="img3" width="28" height="51" alt="Error de imagen" src="#" onclick="pass()">
+     </label>
+     <label>
+     <input onclick="imgAll()" type="button" value="Cambiar imágenes">
+     </label>   
+          
+                    <input type="submit" name="entrar" value="Registrar"/>
+                    <a href="admi.php">Administrar la página</a>
+                    <a href="login.html">Login</a>
+          
+        </div>    
+        <div id="resultados"></div>  
+       
+     </form>
+    
+     <footer id="pie">
+    <small>Login para niños &copy; 2016-I &ac; ISO18001
+    </small>
+</footer>
+  </div>
+  </body>
+</html>

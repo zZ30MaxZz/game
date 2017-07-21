@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="Página para registrar niños" content="Datos adicionales" />
+    <meta name="game,niños,juegos" content="Desarrollo en HTML5" />
+    <script type="text/javascript" src="script_datos.js"></script>
+    <script type="text/javascript" src="scriptV.js"></script>
+    <script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+
+    <title>Registro 2</title>    
+    <link rel="stylesheet" href="estilosMX2.css">
+    
+</head>
+<body>
+<div id="agrupar">
+
+<header id="cabecera">
+    <h1 id="titulo">Ya casi</h1>
+    <p id="miparrafo">Debes completar el registro</p>
+    <p class="miparrafo2">...el juego espera</p>
+</header>
+<form name="datosUser" method="POST" action="datos.php"  onsubmit="return radioS2()">
+
+<section id="seccion"><h2>Registro</h2>
+    <article><h2>...datos adicionales</h2>
+        <p id="texto">Datos adicionales</p>
+        <table>
+                <tr>
+                    <td><label>Departamento y Distrito</label></td>
+
+                    <td><select id="opcionDep" onchange='cargarDistritos();'>
+                            <option value="0">Departamento</option >
+                            <option value="1">Apurimac</option >
+                            <option value="2">Ayacucho</option >
+                            <option value="3">Arequipa</option >
+                    </select>
+                    </td>
+                    <td>
+                    <select id="opcionDis" onchange='seleccionado(this.value);'>
+                        <option value='0'>-Selecciona un distrito-</option >
+                    </select>
+                    </td>
+                    <td></td>
+                </tr> 
+                <tr>
+                    <td>
+                        <h2>Sexo</h2>
+                             <label>
+                                  <input onchange="sexo='v';" type="radio" name="imagenPass" value="v" id="radio">
+                                        <img id="img1" width="200" height="200" alt="Alargada" src="imagenes/niños/niño2.png" onclick="sexo='v';">
+                             </label><br>
+                             <label>
+                                  <input onchange="sexo='m';" type="radio" name="imagenPass" value="m" >
+                                        <img id="img2" width="200" height="200" alt="Achatada" src="imagenes/niños/niña2.jpg" onclick="sexo='m';">
+                             </label> 
+                    </td>
+                    
+                    <td>
+                    <h2>Fecha de Nacimiento</h2>
+                    <input type="date" name="cumpleanios" step="1" min="2000-01-01" max="2016-06-20" value="2016-06-01" onchange="fechaNacim=document.datosUser.cumpleanios.value;" />
+                    </td>
+                    <td>
+                        <h2>Mis colores Favoritos</h2>
+                        <input type="checkbox" id="c1" onchange="color()" ><img id="imR" alt="Error de imagen" src="colores/rojo.png" onclick="document.datosUser.c1.checked=!document.datosUser.c1.checked;color()" >
+                        <input type="checkbox" id="c2" onchange="color()"><img id="imG" alt="Error de imagen" src="colores/verde.png" onclick="document.datosUser.c2.checked=!document.datosUser.c2.checked;color()"><br>
+                        <input type="checkbox" id="c3" onchange="color()"><img id="imB" alt="Error de imagen" src="colores/azul.png" onclick="document.datosUser.c3.checked=!document.datosUser.c3.checked;color()">
+                        <input type="checkbox" id="c4" onchange="color()"><img id="imY" alt="Error de imagen" src="colores/amarillo.png" onclick="document.datosUser.c4.checked=!document.datosUser.c4.checked;color()">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><a href="javascript:window.history.go(-1);">volver</a><br><a href="login.html">Login</a></td>
+                    <td><input type="submit" name="entrarjuego" value="Finalizar y entrar al juego"/></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                               
+                </table>
+        
+    </article>  
+     
+ </section>
+      <input type="hidden" name="nomb"/>
+      <input type="hidden" name="passUser"/>
+      <input type="hidden" name="sex"/>
+      <input type="hidden" name="depart"/>
+      <input type="hidden" name="ciu"/>
+      <input type="hidden" name="colors"/>
+      <input type="hidden" name="nac"/>
+    </form>
+
+<footer id="pie">
+    <small>Login para niños &copy; 2016-I &ac; ISO18001
+    </small>
+</footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Login Gameboy</title>
+      <meta charset="utf-8">
+      <script type="text/javascript" src="scriptV3.js"></script>
+      <link rel="stylesheet" href="estilosMX.css"/>
+
+
+  </head>
+  <body>
+  <div>
+  <h1>Bienvenido a mi primer jueguito en HTML5</h1>
+  <h2>Este es el formulario de login</h2>
+     <form name="loginUser" action="login.php" method="POST" onsubmit="return radioS()">
+        <div id="registro">
+            <table>
+                <tr>
+                    <td><label>Nick</label></td>
+                    <td><input type="text" name="nombreUsuario" placeholder="Ingrese un nick" onkeypress="return val_letras(event)" maxlength='30' onchange="setName(this)" required/></td>
+                    <td></td>
+                    <td></td>
+
+                </tr>             
+                </table>
+     <h2>Elige una contraseña</h2>
+     <label>
+     <input onchange="pass()" type="radio" name="imagenPass" value="1" id="radio">
+      <img id="img1" width="28" height="51" alt="Error de imagen" src="#" onclick="pass()">
+     </label>
+     <label>
+     <input onchange="pass()" type="radio" name="imagenPass" value="2" >
+      <img id="img2"  width="28" height="51" alt="Error de imagen" src="#" onclick="pass()">
+     </label>
+     <label>
+     <input onchange="pass()" type="radio" name="imagenPass" value="3">
+      <img id="img3" width="28" height="51" alt="Error de imagen" src="#" onclick="pass()">
+     </label>
+     <label>
+     <input onclick="imgAll()" type="button" value="Cambiar imágenes">
+     </label> 
+                    <input type="submit" name="entrar" value="Ingresar al juego"/>
+                    <input type="hidden" name="nickn"/>
+                    <input type="hidden" name="passnick"/>
+                    <input type="hidden" name="ingreso_user"/>          
+        </div>    
+        <div id="resultados"></div>  
+       
+     </form>
+     <footer id="pie">
+    <small>Login para niños &copy; 2016-I &ac; ISO18001
+    </small>
+</footer>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Gameboy Play</title>
+      <meta charset="utf-8">
+      <script type="text/javascript" src="scriptV4.js"></script>
+      <link rel="stylesheet" href="estilosMX3_juego.css"/>
+  </head>
+  <body>
+  <div>
+  <h1>Empieza a jugar</h1>
+     <form name="juego" action="juego.php" method="POST" onsubmit="return llenar_Salida()">
+
+        <div id="registro"><h2>Bienvenido <output name="nombreUss"></output></h2>
+
+        <canvas id="myCanvas" width="550" height="300"></canvas>
+        <input type="submit" name="entrar" value="Finalizar y Salir del juego"/>
+            <table>
+                <tr>
+                    <td><label><output name="resultado"></output></label></td>
+
+                </tr>   
+                <tr></tr>          
+                </table>
+                <table id="botones" class="cubito">
+                <tr>
+                    <td></td>
+                    <td><img id="imgR" alt="Error de imagen" src="colores/rojo.png" onclick="mover(38)">
+                    </td>
+                    <td></td>
+                </tr> 
+                <tr>
+                    <td><img id="imgG" alt="Error de imagen" src="colores/verde.png" onclick="mover(37)"></td>
+                    <td></td>
+                    <td><img id="imgB" alt="Error de imagen" src="colores/azul.png" onclick="mover(39)">
+                    </td>
+                </tr> 
+                <tr>
+                    <td></td>
+                    <td><img id="imgY" alt="Error de imagen" src="colores/amarillo.png" onclick="mover(40)">
+                    </td>
+                    <td></td>
+                </tr>             
+                </table>
+                
+        </div>    
+                    <input type="hidden" name="usuarioGame"/>
+                    <input type="hidden" name="entradaUser"/>
+                    <input type="hidden" name="salidaUser"/>    
+       
+     </form>
+     <footer id="pie">
+    <small>Login para niños &copy; 2016-I &ac; ISO18001
+    </small>
+</footer>
+  </div>
+  </body>
+</html>
