@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Map</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+            #mapa {
+                margin: auto;
+                height: 500px;
+                width: 500px;
+            }
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mapa"></div>
+        <br>
+        <input id="pac-input" type="text" placeholder="Introduce una ubicación.">
+        <input type="text" id="street_number" placeholder="N° Dirección.">
+        <input type="text" id="route" placeholder="Dirección.">
+        <input type="text" id="locality" placeholder="Ciduad.">
+        <input type="text" id="administrative_area_level_1" placeholder="Área.">
+        <input type="text" id="country" placeholder="País.">
+        <input type="text" id="code_postal" placeholder="Código postal."><br>
+
+        <input type="text" id="salida" value="salida">
+        <script>
+            var autocomplete;
+            var mapa;
+
+            var street_number = '';
+            var locality = '';
+            var route = '';
+            var administrative_area_level_1 = '';
+            var country = '';
+            var postal_code = '';
+
+            var latitudActual = ''
+            var longitudActual = ''
+
+            var ubicacionCircular;
+            var Radio = 1000;
+
+            var componentForm = {
+                street_number: 'short_name',
+                route: 'long_name',
+                locality: 'long_name',
+                administrative_area_level_1: 'short_name',
+                country: 'long_name',
+                postal_code: 'short_name'
+            };
+
+            function initMap() {
+
+                mapa = new google.maps.Map(document.getElementById('mapa'), {
+                    center: {lat: 0.00, lng: 0.00},
+                    //bounds: defaultBounds,
+                    zoom: 2
+                });
+
+                var options = {
+                    types: ['(cities)'],
+                    //componentRestrictions: {country: 'pe'}
+                };
+
+                var inputAuto = document.getElementById('pac-input');
+
+                autocomplete = new google.maps.places.Autocomplete(inputAuto, options);
+
+                autocomplete.addListener('place_changed', fillInAddress);
+
+                centrarCiudad();
+
+            }
+
+            function centrarCiudad() {
+                var bounds = new google.maps.LatLngBounds();
+                autocomplete.addListener('place_changed', function() {                   
+                    var lugar = autocomplete.getPlace();
+                    if (lugar.geometry.viewport) {
+                        mapa.fitBounds(lugar.geometry.viewport);
+                        mapa.setZoom(14);
+                    } else {
+                        mapa.setCenter(lugar.geometry.location);
+                        mapa.setZoom(16);
+                    }
+
+                    latitudActual=lugar.geometry.location.lat();
+                    longitudActual=lugar.geometry.location.lng();
+
+
+                    if(ubicacionCircular !=null)
+                        ubicacionCircular.setMap(null);
+
+                    ubicacionCircular = new google.maps.Circle({
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#FF0000',
+                        fillOpacity: 0.35,
+                        map: mapa,
+                        center: {lat: latitudActual, lng: longitudActual},
+                        radius: Radio
+                    });
+                    
+                    document.getElementById('salida').value = latitudActual + ' : '+longitudActual;
+
+                });
+
+            }
+
+            function fillInAddress(){
+                var datosAutoComplete = autocomplete.getPlace();
+
+                //document.getElementById('salida').value = datosAutoComplete;
+
+                for (var i = 0; i < datosAutoComplete.address_components.length; i++) {
+                    var addressType = datosAutoComplete.address_components[i].types[0];
+                    if (componentForm[addressType]) {
+                        var val = datosAutoComplete.address_components[i][componentForm[addressType]];
+                        document.getElementById(addressType).value = val;
+						
+						if(addressType == 'street_number')
+                        street_number = val;
+
+                        if(addressType == 'locailty')
+                            locality = val;
+
+                        if(addressType == 'route')
+                            route = val;
+
+                        if(addressType == 'administrative_area_level_1')
+                            administrative_area_level_1 = val;
+
+                        if(addressType == 'country')
+                            country = val;
+
+                        if(addressType == 'postal_code')
+                            postal_code = val;
+                    }
+                }         
+
+            }
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvSj8dz7MHbgkuok2c9rnn5Q04cuhn9Zc&libraries=places&callback=initMap"
+                async defer></script>
+    </body>
+</html>
